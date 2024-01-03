@@ -8,7 +8,9 @@ remappings = [
     "@solmate=lib/solmate/src/"
     ]
 
-fs_permissions = [{ access = "read", path = "./broadcast" }] # Allow foundry to run commands on the command line
+# Allow foundry to run commands on the command line
+ffi = true 
+fs_permissions = [{ access = "read", path = "./broadcast" }]
 
 [etherscan]
 mainnet = { key = "${ETHERSCAN_API_KEY}" }
