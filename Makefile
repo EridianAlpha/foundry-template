@@ -7,7 +7,7 @@
 
 help:
 	@echo "Usage:"
-	@echo "  make deploy [ARGS=...] [VERIFY=...]\n    example: make deploy NETWORK_ARGS=\"--network holesky\" VERIFY=true"
+	@echo "  make deploy-anvil\n
 
 clean 		:; forge clean
 remove 		:; rm -rf .gitmodules && rm -rf .git/modules/* && rm -rf lib && touch .gitmodules && git add . && git commit -m "modules"
