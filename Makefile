@@ -3,7 +3,7 @@
 # ================================================================
 -include .env
 
-.PHONY: all test clean help install snapshot format anvil deploy-anvil deploy-holesky #deploy-mainnet
+.PHONY: all test clean help install snapshot format anvil
 
 help:
 	@echo "Usage:"
@@ -21,14 +21,13 @@ format 		:; forge fmt
 anvil 				:; anvil -m 'test test test test test test test test test test test junk' --steps-tracing #--block-time 1
 DEFAULT_ANVIL_KEY 	:= 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
 
-# Configure Deployment Variables
+# Configure Network Variables
 anvil-network:
 	$(eval \
 		NETWORK_ARGS := --broadcast \
 						--rpc-url http://localhost:8545 \
 						--private-key $(DEFAULT_ANVIL_KEY) \
 	)
-deploy-anvil: anvil-network deploy
 
 holesky-network: 
 	$(eval \
@@ -38,7 +37,6 @@ holesky-network:
 			--verify \
 			--etherscan-api-key $(ETHERSCAN_API_KEY) \
 	)
-deploy-holesky: holesky-network deploy
 
 # mainnet-network: 
 # 	$(eval \
@@ -48,7 +46,6 @@ deploy-holesky: holesky-network deploy
 # 			--verify \
 # 			--etherscan-api-key $(ETHERSCAN_API_KEY) \
 # 	)
-# deploy-mainnet: mainnet-network deploy
 
 # ================================================================
 # │                CONTRACT SPECIFIC CONFIGURATION               │
@@ -59,7 +56,10 @@ install:
 	forge install openzeppelin/openzeppelin-contracts@v4.8.3 --no-commit && \
 	forge install transmissions11/solmate@v6 --no-commit
 
-.PHONY: deploy mint-basicNft anvil-mint-basicNft holesky-mint-basicNft #mainnet-mint-basicNft
+deploy-anvil: anvil-network deploy
+deploy-holesky: holesky-network deploy
+# deploy-mainnet: mainnet-network deploy
+
 deploy:
 	@forge script script/DeployBasicNft.s.sol:DeployBasicNft $(NETWORK_ARGS) -vvvv
 
