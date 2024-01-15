@@ -47,6 +47,7 @@ holesky-network:
 # 			--etherscan-api-key $(ETHERSCAN_API_KEY) \
 # 	)
 
+
 # ================================================================
 # │                CONTRACT SPECIFIC CONFIGURATION               │
 # ================================================================
@@ -56,15 +57,19 @@ install:
 	forge install openzeppelin/openzeppelin-contracts@v4.8.3 --no-commit && \
 	forge install transmissions11/solmate@v6 --no-commit
 
-deploy-anvil: anvil-network deploy
-deploy-holesky: holesky-network deploy
-# deploy-mainnet: mainnet-network deploy
-
 deploy:
 	@forge script script/DeployBasicNft.s.sol:DeployBasicNft $(NETWORK_ARGS) -vvvv
 
 mint-basicNft: 
 	@forge script script/Interactions.s.sol:MintBasicNft $(NETWORK_ARGS) -vvvv
+
+
+# ================================================================
+# │                         RUN COMMANDS                         │
+# ================================================================
+deploy-anvil: anvil-network deploy
+deploy-holesky: holesky-network deploy
+# deploy-mainnet: mainnet-network deploy
 
 anvil-mint-basicNft: anvil-network mint-basicNft
 holesky-mint-basicNft: holesky-network mint-basicNft
