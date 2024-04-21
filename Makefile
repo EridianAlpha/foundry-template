@@ -53,12 +53,21 @@ holesky-network:
 ethernal:
 	ETHERNAL_API_TOKEN=${ETHERNAL_API_TOKEN} ethernal listen --astUpload true
 
+
 # ================================================================
-# │                         FORK TESTING                         │
+# │                   FORK TESTING AND COVERAGE                   │
 # ================================================================
 test-fork-mainnet:; forge test --fork-url ${MAINNET_RPC_URL}
 test-fork-mainnet-v:; forge test --fork-url ${MAINNET_RPC_URL} -vvvv
 test-fork-mainnet-summary:; forge test --fork-url ${MAINNET_RPC_URL} --summary
+
+coverage:
+	@forge coverage --fork-url ${MAINNET_RPC_URL} --report lcov --report summary
+	@echo
+
+coverage-report:
+	@forge coverage --fork-url ${MAINNET_RPC_URL} --report debug > coverage-report.txt
+	@echo Output saved to coverage-report.txt
 
 
 # ================================================================
