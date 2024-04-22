@@ -62,7 +62,7 @@ test-fork-mainnet-v:; forge test --fork-url ${MAINNET_RPC_URL} -vvvv
 test-fork-mainnet-summary:; forge test --fork-url ${MAINNET_RPC_URL} --summary
 
 coverage:
-	@forge coverage --fork-url ${MAINNET_RPC_URL} --report lcov --report summary
+	@forge coverage --fork-url ${MAINNET_RPC_URL} --report summary --report lcov 
 	@echo
 
 coverage-report:
