@@ -17,7 +17,7 @@ CONTRACT_NAME="$2"
 IGNORE_LIST="$3"
 
 # Convert ignore list string to an array
-IFS=',' read -ra IGNORE_ARRAY <<< "$IGNORE_LIST"
+IFS=',' read -ra IGNORE_ARRAY <<<"$IGNORE_LIST"
 
 # Initialize allMatched to 1 (true)
 allMatched=1
@@ -35,7 +35,7 @@ for METHOD in $METHODS; do
     fi
 
     # Count occurrences in the contract
-    CONTRACT_COUNT=$(grep -ow "$METHOD_NAME" <<< "$METHODS" | wc -l)
+    CONTRACT_COUNT=$(grep -ow "$METHOD_NAME" <<<"$METHODS" | wc -l)
 
     # Count occurrences in the interface contract file
     INTERFACE_COUNT=$(grep -ow "$METHOD_NAME" "$INTERFACE_CONTRACT_FILE" | wc -l)
