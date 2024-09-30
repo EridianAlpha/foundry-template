@@ -18,6 +18,10 @@ docs/
 .gas-snapshot
 lcov.info
 coverage-report.txt
+report.md
+
+# Custom Foundry Files
+MAKE_CLI_INPUT_VALUE.tmp
 
 # Mac OS Files
 .DS_Store
