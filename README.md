@@ -5,8 +5,8 @@
   - [2.1. Install Dependencies](#21-install-dependencies)
   - [2.2. Create the `.env` file](#22-create-the-env-file)
 - [3. Testing](#3-testing)
-  - [3.1. Tests (Fork)](#31-tests-fork)
-  - [3.2. Coverage (Fork)](#32-coverage-fork)
+  - [3.1. Tests](#31-tests)
+  - [3.2. Coverage](#32-coverage)
 - [4. Deployment](#4-deployment)
 - [5. Interactions](#5-interactions)
   - [5.1. Force Send ETH](#51-force-send-eth)
@@ -42,19 +42,27 @@ Use the `.env.example` file as a template to create a `.env` file.
 
 ## 3. Testing
 
-### 3.1. Tests (Fork)
+### 3.1. Tests
 
 ```bash
 make test
+make test-fork
+
 make test-v
+make test-v-fork
+
 make test-summary
+make test-summary-fork
 ```
 
-### 3.2. Coverage (Fork)
+### 3.2. Coverage
 
 ```bash
 make coverage
+make coverage-fork
+
 make coverage-report
+make coverage-report-fork
 ```
 
 ## 4. Deployment
